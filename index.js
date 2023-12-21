@@ -30,7 +30,16 @@ async function run() {
         // await client.connect();
         // Send a ping to confirm a successful connection
 
+        const taskCollection = client.db('taskDb').collection('tasks');
 
+        // task related api
+
+        app.post("/addTask", async(req,res)=>{
+            const task = req.body;
+            console.log(task);
+            const result = await taskCollection.insertOne(task)
+            res.send(result)
+        })
 
         
 
